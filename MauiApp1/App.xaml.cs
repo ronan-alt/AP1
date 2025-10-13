@@ -8,8 +8,6 @@ namespace MauiApp1
         {
             InitializeComponent();
             MainPage = new Register();
-
-            MainPage = new AppShell();
         }
     }
 }
