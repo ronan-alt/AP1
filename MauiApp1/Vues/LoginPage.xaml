@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:AP1.Vues"
+             x:Class="AP1.Vues.LoginPage"
+             Title="Connexion">
+    <VerticalStackLayout Padding="30" Spacing="20">
+        <Label Text="Connexion" FontSize="32" HorizontalOptions="Center" />
+        <Entry x:Name="UsernameEntry" Placeholder="Identifiant" Text="{Binding Username}" />
+        <Entry x:Name="PasswordEntry" Placeholder="Mot de passe" IsPassword="True" Text="{Binding Password}" />
+        <Button Text="Se connecter" Command="{Binding LoginCommand}" />
+        <Label Text="{Binding ErrorMessage}" TextColor="Red" IsVisible="{Binding HasError}" />
+    </VerticalStackLayout>
+</ContentPage>
