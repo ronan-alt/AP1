@@ -7,7 +7,10 @@ namespace MauiApp1
         public App()
         {
             InitializeComponent();
-            MainPage = new Register();
+            MainPage = new NavigationPage(new Register());
         }
+
     }
+    
 }
+

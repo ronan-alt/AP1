@@ -1,3 +1,4 @@
+using AP1.Services;
 using Microsoft.Extensions.Logging.Abstractions;
 using Microsoft.Maui.Controls;
 using System;
@@ -6,6 +7,7 @@ namespace AP1.Vues;
 
 public partial class Register : ContentPage
 {
+    private readonly Apis Apis = new Apis();
     public Register()
     {
         InitializeComponent();
