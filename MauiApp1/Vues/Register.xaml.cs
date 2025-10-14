@@ -1,3 +1,4 @@
+using AP1.Modeles;
 using AP1.Services;
 using Microsoft.Extensions.Logging.Abstractions;
 using Microsoft.Maui.Controls;
@@ -16,24 +17,32 @@ public partial class Register : ContentPage
 
     private async void OnRegisterClicked(object sender, EventArgs e)
     {
-        string name = NameEntry.Text;
-        string email = EmailEntry.Text;
-        string password = PasswordEntry.Text;
-        string confirmPassword = ConfirmPasswordEntry.Text;
+        var name = NameEntry.Text;
+        var prenom = PrenomEntry.Text;
+        var email = EmailEntry.Text;
+        var password = PasswordEntry.Text;
+        var confirmPassword = ConfirmPasswordEntry.Text;
 
-        if (name == "" || email == "" || password == "" || confirmPassword == "")
+        if (name.Length == 0 || email == "" || password == "" || confirmPassword == "" || prenom == "")
         {
             await DisplayAlert("Erreur", "Tous les champs sont obligatoires.", "OK");
-            return;
+            return ;
+        }
+        if (password.Length <8)
+        {            
+            await DisplayAlert("Erreur", "Le mot de passe doit contenir au moins 8 caractères.", "OK");
+            return ;
         }
 
         if (password != confirmPassword)
         {
             await DisplayAlert("Erreur", "Les mots de passe ne correspondent pas.", "OK");
-            return;
+            return ;
         }
+        User u1 = new User(email, password, name, prenom);
+        bool BB = await Apis.PostOneAsync("api/mobile/register", u1);
+       // await DisplayAlert("","votre compte a bien été creer","OK");
 
-        await DisplayAlert("Succès", "Compte créé avec succès !", "OK");
     }
     private async void OnBackClicked(object sender, EventArgs e)
     {

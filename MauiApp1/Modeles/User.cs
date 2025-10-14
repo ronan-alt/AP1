@@ -34,9 +34,9 @@ namespace AP1.Modeles
             _apis = new Apis();
 
         }
-        public User(int id, string email, string password, string nom, string prenom)
+        public User( string email, string password, string nom, string prenom)
         {
-            _id = id;
+            
             _email = email;
             _password = password;
             _nom = nom;

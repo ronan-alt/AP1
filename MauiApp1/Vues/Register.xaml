@@ -22,7 +22,10 @@
             <Entry x:Name="NameEntry"
                    Placeholder="Nom complet"
                    ClearButtonVisibility="WhileEditing" />
-
+            <!-- Champ Prenom -->
+            <Entry x:Name="PrenomEntry"
+                    Placeholder="prenom "
+                    ClearButtonVisibility="WhileEditing" />
             <!-- Champ Email -->
             <Entry x:Name="EmailEntry"
                    Placeholder="Adresse e-mail"
