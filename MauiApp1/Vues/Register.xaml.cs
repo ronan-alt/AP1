@@ -23,10 +23,10 @@ public partial class Register : ContentPage
         var password = PasswordEntry.Text;
         var confirmPassword = ConfirmPasswordEntry.Text;
 
-        if (name.Length == 0 || email == "" || password == "" || confirmPassword == "" || prenom == "")
+        if (string.IsNullOrWhiteSpace(name) ||string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(password) || string.IsNullOrWhiteSpace(confirmPassword) || string.IsNullOrWhiteSpace(prenom))
         {
             await DisplayAlert("Erreur", "Tous les champs sont obligatoires.", "OK");
-            return ;
+            return;
         }
         if (password.Length <8)
         {            
@@ -41,8 +41,8 @@ public partial class Register : ContentPage
         }
         User u1 = new User(email, password, name, prenom);
         bool BB = await Apis.PostOneAsync("api/mobile/register", u1);
-       // await DisplayAlert("","votre compte a bien été creer","OK");
-
+        await DisplayAlert("","votre compte a bien été creer","OK");
+        await Navigation.PushAsync(new LoginPage());
     }
     private async void OnBackClicked(object sender, EventArgs e)
     {
