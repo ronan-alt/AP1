@@ -42,6 +42,11 @@ namespace AP1.Modeles
             _nom = nom;
             _prenom = prenom;
         }
+        public User(string email, string password)
+        {
+            _email = email;
+            _password = password;
+        }
         #endregion
         #region getter/setter
 
