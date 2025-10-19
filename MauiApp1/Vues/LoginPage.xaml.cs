@@ -28,12 +28,24 @@ public partial class LoginPage : ContentPage
         }
         else
         {
-            User U1 = await Apis.GetOneAsync<User>($"api/mobile/GetFindUser", new User(email, password));
+            User u1 = new User(email, password);
+            bool BB = await Apis.GetOneAsync("api/mobile/GetFindUser", u1);
+            if (BB == true)
+            {
+                await Navigation.PushAsync(new Accueil());
 
-            await Navigation.PushAsync(new Accueil());
+            }
+            else
+            {
+                await DisplayAlert("Erreur", "email ou mot de passe incorrect.", "OK");
+                await Navigation.PushAsync(new LoginPage());
+
+
+            }
+
         }
         return;
-        }
+    }
     private async void OnRegisterClicked(object sender, EventArgs e)
     {
         await Navigation.PushAsync(new Register());
