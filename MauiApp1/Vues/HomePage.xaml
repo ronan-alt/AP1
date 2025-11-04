@@ -47,6 +47,7 @@
                 <!-- Actions rapides -->
                 <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
                     <Button x:Name="NewTournamentButton" Text="Nouveau tournoi" BackgroundColor="#2C3E50" TextColor="#F8F9FA" CornerRadius="12" HeightRequest="50"/>
+
                     <Button x:Name="ManageTeamsButton" Grid.Column="1" Text="Gérer équipes" BackgroundColor="#2C3E50" TextColor="#F8F9FA" CornerRadius="12" HeightRequest="50"/>
                 </Grid>
 
