@@ -10,7 +10,7 @@ namespace AP1.Vues;
 
 public partial class HomePage : ContentPage
 {
-    private readonly Apis _apiService = new Apis();
+    private readonly Apis Apis = new Apis();
     private ObservableCollection<Competition> _competitions = new ObservableCollection<Competition>();
 
     public HomePage()
@@ -32,7 +32,7 @@ public partial class HomePage : ContentPage
         ErrorLabel.IsVisible = false;
         try
         {
-            _competitions = await _apiService.GetAllAsync<Competition>("api/mobile/GetAllCompetitions");
+            _competitions = await Apis.GetAllAsync<Competition>("api/mobile/GetAllCompetitions");
         }
         catch (Exception)
         {
