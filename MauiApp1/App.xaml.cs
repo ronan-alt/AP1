@@ -1,4 +1,5 @@
 ﻿using AP1.Vues;
+using MauiApp1.Vues;
 
 namespace MauiApp1
 {
@@ -11,6 +12,6 @@ namespace MauiApp1
         }
 
     }
-    
+
 }
 
