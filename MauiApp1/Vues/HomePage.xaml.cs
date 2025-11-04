@@ -36,7 +36,7 @@ public partial class HomePage : ContentPage
         }
         catch (Exception)
         {
-           
+          
             _competitions = new ObservableCollection<Competition>
             {
                 new Competition { Id = 1, DateDeb = DateTime.Today.AddDays(-1), DateFin = DateTime.Today.AddDays(1) },
