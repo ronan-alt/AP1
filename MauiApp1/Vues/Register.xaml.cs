@@ -41,8 +41,16 @@ public partial class Register : ContentPage
         }
         User u1 = new User(email, password, name, prenom);
         bool BB = await Apis.PostOneAsync("api/mobile/register", u1);
-        await DisplayAlert("","votre compte a bien été creer","OK");
-        await Navigation.PushAsync(new LoginPage());
+        if (BB == true)
+        {
+            await DisplayAlert("", "votre compte a bien été creer", "OK");
+            await Navigation.PushAsync(new LoginPage());
+        }
+        else
+        {
+            await DisplayAlert("Erreur", "Une erreur est survenue", "OK");
+            await Navigation.PushAsync(new Register());
+        }
     }
     private async void OnBackClicked(object sender, EventArgs e)
     {

@@ -1,4 +1,4 @@
-namespace MauiApp1.Vues;
+ namespace MauiApp1.Vues;
 
 public partial class ForgotPassword : ContentPage
 {

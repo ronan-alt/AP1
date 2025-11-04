@@ -29,8 +29,8 @@ public partial class LoginPage : ContentPage
         else
         {
             User u1 = new User(email, password);
-            User BB = await Apis.GetOneAsync("api/mobile/GetFindUser", u1);
-            if (BB == null)
+            var BB = await Apis.GetOneAsync("api/mobile/GetFindUser", u1);
+            if (BB.Email==null)
             {
                 await DisplayAlert("Erreur", "email ou mot de passe incorrect.", "OK");
                 await Navigation.PushAsync(new LoginPage());
