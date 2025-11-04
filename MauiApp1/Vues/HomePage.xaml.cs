@@ -36,7 +36,7 @@ public partial class HomePage : ContentPage
         }
         catch (Exception)
         {
-            // Fallback données test si API échoue
+           
             _competitions = new ObservableCollection<Competition>
             {
                 new Competition { Id = 1, DateDeb = DateTime.Today.AddDays(-1), DateFin = DateTime.Today.AddDays(1) },
@@ -48,12 +48,10 @@ public partial class HomePage : ContentPage
 
         CompetitionsCollection.ItemsSource = _competitions;
 
-        // Statistiques simples basées sur les données disponibles
         var now = DateTime.Now;
         int active = _competitions.Count(c => c.DateDeb <= now && now <= c.DateFin);
         ActiveTournamentsLabel.Text = active.ToString();
 
-        // Sans nouvelles classes ni endpoints dédiés, on met 0 par défaut
         TeamsCountLabel.Text = "0";
         StudentsCountLabel.Text = "0";
 
