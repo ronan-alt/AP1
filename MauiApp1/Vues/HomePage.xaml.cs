@@ -36,7 +36,7 @@ public partial class HomePage : ContentPage
         }
         catch (Exception)
         {
-          
+            
             _competitions = new ObservableCollection<Competition>
             {
                 new Competition { Id = 1, DateDeb = DateTime.Today.AddDays(-1), DateFin = DateTime.Today.AddDays(1) },
@@ -48,10 +48,12 @@ public partial class HomePage : ContentPage
 
         CompetitionsCollection.ItemsSource = _competitions;
 
+       
         var now = DateTime.Now;
         int active = _competitions.Count(c => c.DateDeb <= now && now <= c.DateFin);
         ActiveTournamentsLabel.Text = active.ToString();
 
+        
         TeamsCountLabel.Text = "0";
         StudentsCountLabel.Text = "0";
 
