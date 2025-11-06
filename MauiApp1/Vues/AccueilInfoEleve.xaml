@@ -1,0 +1,79 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AP1.Vues.AccueilInfoEleve"
+             BackgroundColor="#F5F5F5">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="30" Spacing="25" VerticalOptions="Center">
+
+            <!-- Titre -->
+            <Label Text="Informations de l'élève"
+                   FontSize="28"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   TextColor="#1E1E1E"/>
+
+            <!-- Carte d'informations -->
+            <Frame CornerRadius="15"
+                   HasShadow="True"
+                   BackgroundColor="White"
+                   Padding="20"
+                   BorderColor="#DDDDDD">
+
+                <VerticalStackLayout Spacing="15">
+
+                    <HorizontalStackLayout>
+                        <Label Text="Nom :"
+                               FontAttributes="Bold"
+                               WidthRequest="120"
+                               TextColor="#333"/>
+                        <Label x:Name="NomLabel"
+                               Text="--"
+                               TextColor="#555"/>
+                    </HorizontalStackLayout>
+
+                    <HorizontalStackLayout>
+                        <Label Text="Prénom :"
+                               FontAttributes="Bold"
+                               WidthRequest="120"
+                               TextColor="#333"/>
+                        <Label x:Name="PrenomLabel"
+                               Text="--"
+                               TextColor="#555"/>
+                    </HorizontalStackLayout>
+
+                    <HorizontalStackLayout>
+                        <Label Text="Email :"
+                               FontAttributes="Bold"
+                               WidthRequest="120"
+                               TextColor="#333"/>
+                        <Label x:Name="EmailLabel"
+                               Text="--"
+                               TextColor="#555"/>
+                    </HorizontalStackLayout>
+
+                    <HorizontalStackLayout>
+                        <Label Text="Compétition :"
+                               FontAttributes="Bold"
+                               WidthRequest="120"
+                               TextColor="#333"/>
+                        <Label x:Name="CompetitionLabel"
+                               Text="--"
+                               TextColor="#555"/>
+                    </HorizontalStackLayout>
+
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Bouton retour -->
+            <Button Text="Retour à l'accueil"
+                    BackgroundColor="#0078D7"
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    CornerRadius="12"
+                    Clicked="OnRetourClicked"
+                    HeightRequest="50"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
