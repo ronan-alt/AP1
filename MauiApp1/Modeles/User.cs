@@ -9,6 +9,7 @@ namespace AP1.Modeles
     {
         #region propriete (champs privés d'origine)
         private int _id;
+        private int _idEquipe;
         private string _nom;
         private string _prenom;
         private string _password;
@@ -107,6 +108,8 @@ namespace AP1.Modeles
         #endregion
 
         #region getter/setter (avec mapping JSON précis)
+        public int IdEquipe { get => _idEquipe; set => _idEquipe = value; }
+
         [JsonProperty("id")]
         public int Id { get => _id; set => _id = value; }
 
@@ -143,6 +146,7 @@ namespace AP1.Modeles
             get => _roles ??= new List<string>();
             set => _roles = value ?? new List<string>();
         }
+
         #endregion
 
         #region methode

@@ -16,4 +16,8 @@ public partial class AcceuilClassementEleve : ContentPage
 	{
         InitializeComponent();
 	}
+    private async void OnRetourClicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new AcceuilEleve());
+    }
 }

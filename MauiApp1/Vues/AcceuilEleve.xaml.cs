@@ -25,7 +25,7 @@ namespace AP1.Vues;
     }
     public async void OnClassementClicked(object sender, EventArgs e)
     {
-        //await Navigation.PushAsync(new AcceuilClassementEleve());
+        await Navigation.PushAsync(new AcceuilClassementEleve());
     }
 
 }

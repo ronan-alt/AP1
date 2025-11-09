@@ -1,8 +1,10 @@
 using AP1.Modeles;
 using AP1.Services;
+using MauiApp1.Services;
 using MauiApp1.Vues;
 using Microsoft.Extensions.Logging.Abstractions;
 using Microsoft.Maui.Controls;
+using Microsoft.SqlServer.Management.Smo.Wmi;
 using System;
 
 namespace AP1.Vues;
@@ -37,6 +39,7 @@ public partial class LoginPage : ContentPage
             }
             else
             {
+                Session.utilisateur = BB;
                 await Navigation.PushAsync(new AcceuilEleve());
             }
 
