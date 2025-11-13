@@ -9,13 +9,11 @@ namespace AP1.Modeles
     {
         #region propriete (champs privés d'origine)
         private int _id;
-        private int _idEquipe;
         private string _nom;
         private string _prenom;
         private string _password;
         private string _email;
         private bool _statut;
-        private Equipe _leEleve;
         private Equipe _laEquipe;
         private Apis _apis;
         // Ajouts discrets pour refléter le JSON
@@ -24,51 +22,24 @@ namespace AP1.Modeles
         #endregion
 
         #region constructeurs d'origine
-        public User(int id, string nom, string mdp, string email)
-        {
-            Id = id;
-            Nom = nom;
-            Password = mdp;
-            Email = email;
-            _leEleve = new Equipe();
-            _laEquipe = new Equipe();
-            _apis = new Apis();
-            _roles = new List<string>();
-            _userIdentifier = string.Empty;
-        }
 
-        public User(string email, string password, string nom, string prenom)
+
+        public User(string email, string password, string nom, string prenom) // register
         {
             _email = email;
             _password = password;
             _nom = nom;
             _prenom = prenom;
-            _leEleve = new Equipe();
             _laEquipe = new Equipe();
             _apis = new Apis();
             _roles = new List<string>();
             _userIdentifier = string.Empty;
         }
-
-        public User(int id, string email /*string userIdentifier, List<string> roles*/, string password, string nom, string prenom, bool statut, Equipe laEquipe)
-        {
-            _id = id;
-            _email = email;
-            _password = password;
-            _nom = nom;
-            _prenom = prenom;
-            _statut = statut;
-            _laEquipe = laEquipe ?? new Equipe();
-            _leEleve = new Equipe();
-            _apis = new Apis();
-            _roles = new List<string>();
-            _userIdentifier = string.Empty;
-        }
-
-        public User(string email, string password)
+        public User(string email, string password) //login
         {
             _email = email;
             _password = password;
+            Equipe equipe = new Equipe();
 
         }
         #endregion
@@ -88,7 +59,8 @@ namespace AP1.Modeles
             [JsonProperty("password")] string password = null,
             [JsonProperty("nom")] string nom = null,
             [JsonProperty("prenom")] string prenom = null,
-            [JsonProperty("statut")] bool statut = false
+            [JsonProperty("statut")] bool statut = false,
+            [JsonProperty("latEquipe")] Equipe latEquipe = null
         )
         {
             _id = id;
@@ -101,14 +73,12 @@ namespace AP1.Modeles
             _statut = statut;
 
             // Conserver l'esprit de la classe d'origine
-            _leEleve = new Equipe();
             _laEquipe = new Equipe();
             _apis = new Apis();
         }
         #endregion
 
         #region getter/setter (avec mapping JSON précis)
-        public int IdEquipe { get => _idEquipe; set => _idEquipe = value; }
 
         [JsonProperty("id")]
         public int Id { get => _id; set => _id = value; }
@@ -116,7 +86,6 @@ namespace AP1.Modeles
         [JsonProperty("statut")]
         public bool Statut { get => _statut; set => _statut = value; }
 
-        public Equipe LeEleve { get => _leEleve; set => _leEleve = value; }
         public Equipe LaEquipe { get => _laEquipe; set => _laEquipe = value; }
         public Apis Apis { get => _apis; set => _apis = value; }
 

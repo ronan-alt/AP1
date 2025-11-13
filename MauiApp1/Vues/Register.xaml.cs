@@ -44,7 +44,7 @@ public partial class Register : ContentPage
         if (BB == true)
         {
             await DisplayAlert("", "votre compte a bien été creer", "OK");
-            await Navigation.PushAsync(new LoginPage());
+            await Navigation.PushAsync(new AjouterEquipe());
         }
         else
         {

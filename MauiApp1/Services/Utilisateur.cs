@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MauiApp1.Services
 {
-    public static class Session
+    public static class Utilisateur
     {
         public static User utilisateur { get; set; }
     }

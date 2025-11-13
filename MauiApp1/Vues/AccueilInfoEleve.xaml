@@ -3,77 +3,32 @@
              x:Class="AP1.Vues.AccueilInfoEleve"
              BackgroundColor="#F5F5F5">
 
-    <ScrollView>
-        <VerticalStackLayout Padding="30" Spacing="25" VerticalOptions="Center">
+    <VerticalStackLayout Padding="20" Spacing="20">
+        <Label Text="Informations de l'utilisateur"
+               FontSize="24"
+               FontAttributes="Bold"
+               HorizontalOptions="Center" />
 
-            <!-- Titre -->
-            <Label Text="Informations de l'élève"
-                   FontSize="28"
-                   FontAttributes="Bold"
-                   HorizontalOptions="Center"
-                   TextColor="#1E1E1E"/>
+        <Frame Padding="15" BackgroundColor="#f0f0f0" CornerRadius="10">
+            <VerticalStackLayout Spacing="8">
+                <Label Text="Nom :" FontAttributes="Bold" />
+                <Label x:Name="NomLabel" FontSize="18" />
 
-            <!-- Carte d'informations -->
-            <Frame CornerRadius="15"
-                   HasShadow="True"
-                   BackgroundColor="White"
-                   Padding="20"
-                   BorderColor="#DDDDDD">
+                <Label Text="Prénom :" FontAttributes="Bold" />
+                <Label x:Name="PrenomLabel" FontSize="18" />
 
-                <VerticalStackLayout Spacing="15">
+                <Label Text="Email :" FontAttributes="Bold" />
+                <Label x:Name="EmailLabel" FontSize="18" />
+            </VerticalStackLayout>
+        </Frame>
 
-                    <HorizontalStackLayout>
-                        <Label Text="Nom :"
-                               FontAttributes="Bold"
-                               WidthRequest="120"
-                               TextColor="#333"/>
-                        <Label x:Name="NomLabel"
-                               Text="--"
-                               TextColor="#555"/>
-                    </HorizontalStackLayout>
-
-                    <HorizontalStackLayout>
-                        <Label Text="Prénom :"
-                               FontAttributes="Bold"
-                               WidthRequest="120"
-                               TextColor="#333"/>
-                        <Label x:Name="PrenomLabel"
-                               Text="--"
-                               TextColor="#555"/>
-                    </HorizontalStackLayout>
-
-                    <HorizontalStackLayout>
-                        <Label Text="Email :"
-                               FontAttributes="Bold"
-                               WidthRequest="120"
-                               TextColor="#333"/>
-                        <Label x:Name="EmailLabel"
-                               Text="--"
-                               TextColor="#555"/>
-                    </HorizontalStackLayout>
-
-                    <HorizontalStackLayout>
-                        <Label Text="Compétition :"
-                               FontAttributes="Bold"
-                               WidthRequest="120"
-                               TextColor="#333"/>
-                        <Label x:Name="CompetitionLabel"
-                               Text="--"
-                               TextColor="#555"/>
-                    </HorizontalStackLayout>
-
-                </VerticalStackLayout>
-            </Frame>
-
-            <!-- Bouton retour -->
-            <Button Text="Retour à l'accueil"
-                    BackgroundColor="#0078D7"
-                    TextColor="White"
-                    FontAttributes="Bold"
-                    CornerRadius="12"
-                    Clicked="OnRetourClicked"
-                    HeightRequest="50"/>
-
-        </VerticalStackLayout>
-    </ScrollView>
+        <!-- Bouton retour -->
+        <Button Text="← Retour"
+                FontAttributes="Bold"
+                BackgroundColor="#007AFF"
+                TextColor="White"
+                CornerRadius="10"
+                HeightRequest="45"
+                Clicked="OnRetourClicked"/>
+    </VerticalStackLayout>
 </ContentPage>
