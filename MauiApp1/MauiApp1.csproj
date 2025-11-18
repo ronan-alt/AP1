@@ -72,10 +72,23 @@
 	  <MauiXaml Update="Vues\AcceuilEleve.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Vues\AccueilGererEquipe.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Vues\AccueilCreeCompetition.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Vues\AccueilInfoEleve.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+<<<<<<< HEAD
 	  <MauiXaml Update="Vues\HomePage.xaml">
+=======
+	  <MauiXaml Update="Vues\AjouterEquipe.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Vues\AccueilProfesseur.xaml">
+>>>>>>> 8c9c91ab31ff65a90e314bd9dae7a6013d5b9ef5
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Vues\ForgotPassword.xaml">

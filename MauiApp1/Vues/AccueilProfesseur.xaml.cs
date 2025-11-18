@@ -5,19 +5,30 @@ using System.Threading.Tasks;
 using AP1.Modeles;
 using AP1.Services;
 using Microsoft.Maui.Controls;
+using MauiApp1.Vues;
 
 namespace AP1.Vues;
 
-public partial class HomePage : ContentPage
+public partial class AccueilProfesseur : ContentPage
 {
     private readonly Apis Apis = new Apis();
     private ObservableCollection<Competition> _competitions = new ObservableCollection<Competition>();
 
-    public HomePage()
+    public AccueilProfesseur()
     {
         InitializeComponent();
         NewTournamentButton.Clicked += OnNewTournamentClicked;
         ManageTeamsButton.Clicked += OnManageTeamsClicked;
+        CompetitionsCollection.ItemsSource = _competitions;
+
+        MessagingCenter.Subscribe<AccueilCreeCompetition, Competition>(this, "CompetitionCreated", (sender, comp) =>
+        {
+            if (comp is not null)
+            {
+                _competitions.Insert(0, comp);
+                UpdateCounters();
+            }
+        });
     }
 
     protected override async void OnAppearing()
@@ -32,31 +43,61 @@ public partial class HomePage : ContentPage
         ErrorLabel.IsVisible = false;
         try
         {
-            _competitions = await Apis.GetAllAsync<Competition>("api/mobile/GetAllCompetitions");
+            var loaded = await Apis.GetAllAsync<Competition>("api/mobile/GetAllCompetitions");
+            MergeLoadedCompetitions(loaded);
         }
         catch (Exception)
         {
-            _competitions = new ObservableCollection<Competition>
+           
+            var offline = new ObservableCollection<Competition>
             {
-                new Competition { Id = 1, DateDeb = DateTime.Today.AddDays(-1), DateFin = DateTime.Today.AddDays(1) },
-                new Competition { Id = 2, DateDeb = DateTime.Today.AddDays(-7), DateFin = DateTime.Today.AddDays(-2) },
+                new Competition { Id = 1, DateDeb = DateTime.Today.AddDays(-1), DateFin = DateTime.Today.AddDays(1), Nom = "Compétition (offline) 1" },
+                new Competition { Id = 2, DateDeb = DateTime.Today.AddDays(-7), DateFin = DateTime.Today.AddDays(-2), Nom = "Compétition (offline) 2" },
             };
+            MergeLoadedCompetitions(offline);
             ErrorLabel.Text = "Mode déconnecté : données de test affichées.";
             ErrorLabel.IsVisible = true;
         }
 
-        CompetitionsCollection.ItemsSource = _competitions;
+        UpdateCounters();
 
-   
+        SetLoading(false);
+    }
+
+    private void MergeLoadedCompetitions(IEnumerable<Competition> loaded)
+    {
+        if (loaded is null) return;
+        var loadedById = loaded.ToDictionary(c => c.Id, c => c);
+
+     
+        for (int i = 0; i < _competitions.Count; i++)
+        {
+            var existing = _competitions[i];
+            if (loadedById.TryGetValue(existing.Id, out var fromApi))
+            {
+                existing.Nom = string.IsNullOrWhiteSpace(fromApi.Nom) ? existing.Nom : fromApi.Nom;
+                existing.DateDeb = fromApi.DateDeb;
+                existing.DateFin = fromApi.DateFin;
+            }
+        }
+
+        var existingIds = new HashSet<int>(_competitions.Select(c => c.Id));
+        foreach (var c in loaded)
+        {
+            if (!existingIds.Contains(c.Id))
+            {
+                _competitions.Add(c);
+            }
+        }
+    }
+
+    private void UpdateCounters()
+    {
         var now = DateTime.Now;
         int active = _competitions.Count(c => c.DateDeb <= now && now <= c.DateFin);
         ActiveTournamentsLabel.Text = active.ToString();
-
-        
         TeamsCountLabel.Text = "0";
         StudentsCountLabel.Text = "0";
-
-        SetLoading(false);
     }
 
     private void SetLoading(bool isLoading)
@@ -68,12 +109,35 @@ public partial class HomePage : ContentPage
 
     private async void OnNewTournamentClicked(object? sender, EventArgs e)
     {
-        await DisplayAlert("Info", "Création de tournoi à implémenter.", "OK");
+        await Navigation.PushAsync(new AccueilCreeCompetition());
     }
 
     private async void OnManageTeamsClicked(object? sender, EventArgs e)
     {
-        await DisplayAlert("Info", "Gestion des équipes à implémenter.", "OK");
+        await DisplayAlert("Sélection requise", "Sélectionnez un tournoi dans la liste pour le gérer.", "OK");
+    }
+
+    private async void OnCompetitionSelected(object? sender, SelectionChangedEventArgs e)
+    {
+        if (e.CurrentSelection?.FirstOrDefault() is Competition selected)
+        {
+            ((CollectionView)sender!).SelectedItem = null;
+            await Navigation.PushAsync(new AccueilGererEquipe(selected));
+        }
+    }
+
+    private async void OnDeleteCompetitionClicked(object sender, EventArgs e)
+    {
+        if (sender is Button button && button.BindingContext is Competition competition)
+        {
+            var confirm = await DisplayAlert("Supprimer", $"Supprimer \"{competition.Nom}\" ?", "Oui", "Non");
+            if (confirm)
+            {
+              
+                _competitions.Remove(competition);
+                UpdateCounters();
+            }
+        }
     }
 }
 
