@@ -31,7 +31,7 @@ public partial class LoginPage : ContentPage
         else
         {
             User u1 = new User(email, password);
-            var BB = await Apis.GetOneAsync("api/mobile/GetFindUser", u1);
+            var BB = await Apis.GetOneAsync("api/mobile/user", u1);
             if (BB.Email==null)
             {
                 await DisplayAlert("Erreur", "email ou mot de passe incorrect.", "OK");
@@ -39,7 +39,7 @@ public partial class LoginPage : ContentPage
             }
             else
             {
-                Session.utilisateur = BB;
+                Utilisateur.utilisateur = BB;
                 await Navigation.PushAsync(new AcceuilEleve());
             }
 

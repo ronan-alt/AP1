@@ -19,6 +19,15 @@ namespace AP1.Modeles
 
         #endregion
         #region constructeur
+        public Equipe(int id,string nomEquipe)
+        {
+           _id = id;
+              _nomEquipe = nomEquipe;
+              _lesUsers = new List<User>();
+        }
+        public Equipe()
+        {
+        }
         #endregion
         #region getter/setter
         public int Id { get => _id; set => _id = value; }
