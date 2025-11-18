@@ -4,7 +4,6 @@
              x:Class="AP1.Vues.AcceuilClassementEleve"
              Title="Classement en longueur"
              BackgroundColor="#F5F5F5">
-
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="20">
 
