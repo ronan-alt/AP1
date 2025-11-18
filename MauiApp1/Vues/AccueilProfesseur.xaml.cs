@@ -9,19 +9,18 @@ using MauiApp1.Vues;
 
 namespace AP1.Vues;
 
-public partial class HomePage : ContentPage
+public partial class AccueilProfesseur : ContentPage
 {
     private readonly Apis Apis = new Apis();
     private ObservableCollection<Competition> _competitions = new ObservableCollection<Competition>();
 
-    public HomePage()
+    public AccueilProfesseur()
     {
         InitializeComponent();
         NewTournamentButton.Clicked += OnNewTournamentClicked;
         ManageTeamsButton.Clicked += OnManageTeamsClicked;
         CompetitionsCollection.ItemsSource = _competitions;
 
-        // Ajoute la compétition créée depuis la page de création
         MessagingCenter.Subscribe<AccueilCreeCompetition, Competition>(this, "CompetitionCreated", (sender, comp) =>
         {
             if (comp is not null)
@@ -49,7 +48,7 @@ public partial class HomePage : ContentPage
         }
         catch (Exception)
         {
-            // Ne jamais remplacer la collection pour ne pas perdre les éléments locaux créés
+           
             var offline = new ObservableCollection<Competition>
             {
                 new Competition { Id = 1, DateDeb = DateTime.Today.AddDays(-1), DateFin = DateTime.Today.AddDays(1), Nom = "Compétition (offline) 1" },
@@ -70,7 +69,7 @@ public partial class HomePage : ContentPage
         if (loaded is null) return;
         var loadedById = loaded.ToDictionary(c => c.Id, c => c);
 
-        // Update existing items present in API payload
+     
         for (int i = 0; i < _competitions.Count; i++)
         {
             var existing = _competitions[i];
@@ -82,7 +81,6 @@ public partial class HomePage : ContentPage
             }
         }
 
-        // Add any new items from API that aren't yet in the list
         var existingIds = new HashSet<int>(_competitions.Select(c => c.Id));
         foreach (var c in loaded)
         {
@@ -123,7 +121,6 @@ public partial class HomePage : ContentPage
     {
         if (e.CurrentSelection?.FirstOrDefault() is Competition selected)
         {
-            // Clear selection to allow re-select later
             ((CollectionView)sender!).SelectedItem = null;
             await Navigation.PushAsync(new AccueilGererEquipe(selected));
         }
@@ -136,7 +133,7 @@ public partial class HomePage : ContentPage
             var confirm = await DisplayAlert("Supprimer", $"Supprimer \"{competition.Nom}\" ?", "Oui", "Non");
             if (confirm)
             {
-                // TODO backend : appeler l'API de suppression
+              
                 _competitions.Remove(competition);
                 UpdateCounters();
             }
