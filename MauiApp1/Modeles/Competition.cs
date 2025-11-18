@@ -10,6 +10,7 @@ namespace AP1.Modeles
     {
         #region propriete
         private int _id;
+        private string _nom;
         private DateTime _dateDeb;
         private DateTime _dateFin;
         private List<Score> _lesScores;
@@ -20,6 +21,7 @@ namespace AP1.Modeles
         #endregion
         #region getter/setter
         public int Id { get => _id; set => _id = value; }
+        public string Nom { get => _nom; set => _nom = value; }
         public DateTime DateDeb { get => _dateDeb; set => _dateDeb = value; }
         public DateTime DateFin { get => _dateFin; set => _dateFin = value; }
         public List<Score> LesScores { get => _lesScores; set => _lesScores = value; }
